@@ -40,12 +40,14 @@
 # Released under the same terms as Sensu (the MIT license); see
 # LICENSE for details.
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-handler'
 require 'ridley'
 
+#
+# Chef Node
+#
 class ChefNode < Sensu::Handler
-  def chef_node_exists?
+  def chef_node_exists?  # rubocop:disable all
     retried = 0
     begin
       Ridley.open(

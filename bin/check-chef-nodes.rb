@@ -30,10 +30,12 @@
 #   for details.
 #
 
-require 'rubygems' if RUBY_VERSION < '1.9.0'
 require 'sensu-plugin/check/cli'
 require 'chef'
 
+#
+# Chef Nodes Status Checker
+#
 class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
   option :critical_timespan,
          description: 'Amount of seconds after which node considered as stuck',
@@ -60,7 +62,7 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     @connection ||= chef_api_connection
   end
 
-  def nodes_last_seen
+  def nodes_last_seen # rubocop:disable all
     nodes = connection.get_rest('/nodes')
     nodes.keys.map do |node_name|
       node = connection.get_rest("/nodes/#{node_name}")
