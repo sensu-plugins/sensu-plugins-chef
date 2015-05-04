@@ -21,9 +21,11 @@ Gem::Specification.new do |s|
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-chef'
   s.license                = 'MIT'
-  s.metadata               = { 'maintainer'         => '',
-                               'development_status' => 'unmaintained',
-                               'production_status'  => 'unstable - testing recommended'
+  s.metadata               = { 'maintainer'         => '@mattyjones',
+                               'development_status' => 'active',
+                               'production_status'  => 'unstable - testing recommended',
+                               'releae_draft'       => 'false',
+                               'release_prerelease' => 'false'
   }
   s.name                   = 'sensu-plugins-chef'
   s.platform               = Gem::Platform::RUBY
@@ -33,14 +35,14 @@ Gem::Specification.new do |s|
   s.signing_key            = File.expand_path(pvt_key) if $PROGRAM_NAME =~ /gem\z/
   s.summary                = 'Sensu plugins for chef'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
-  s.version                = SensuPluginsChef::VERSION
+  s.version                = SensuPluginsChef::Version::VER_STRING
 
   s.add_runtime_dependency 'chef',         '11.10.4'
   s.add_runtime_dependency 'ridley',       '4.1.2'
   s.add_runtime_dependency 'sensu-plugin', '1.1.0'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
-s.add_development_dependency 'rubocop',                   '~> 0.30'
+  s.add_development_dependency 'rubocop',                   '~> 0.30'
   s.add_development_dependency 'rspec',                     '~> 3.1'
   s.add_development_dependency 'bundler',                   '~> 1.7'
   s.add_development_dependency 'rake',                      '~> 10.0'
