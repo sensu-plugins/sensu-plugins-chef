@@ -1,6 +1,6 @@
 ## Sensu-Plugins-chef
 
-[![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-chef.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-chef)
+[ ![Build Status](https://travis-ci.org/sensu-plugins/sensu-plugins-chef.svg?branch=master)](https://travis-ci.org/sensu-plugins/sensu-plugins-chef)
 [![Gem Version](https://badge.fury.io/rb/sensu-plugins-chef.svg)](http://badge.fury.io/rb/sensu-plugins-chef)
 [![Code Climate](https://codeclimate.com/github/sensu-plugins/sensu-plugins-chef/badges/gpa.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-chef)
 [![Test Coverage](https://codeclimate.com/github/sensu-plugins/sensu-plugins-chef/badges/coverage.svg)](https://codeclimate.com/github/sensu-plugins/sensu-plugins-chef)
