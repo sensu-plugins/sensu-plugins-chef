@@ -36,7 +36,7 @@ require 'sensu-plugin/check/cli'
 # Check Chef Server
 #
 class CheckChefServer < Sensu::Plugin::Check::CLI
-  def run # rubocop:disable all
+  def run
     # chef-server-ctl must be run with elevated privs. fail if we're not uid 0
     if Process.uid != 0
       unknown('check-chef-server must be run with elevated privileges so that chef-server-ctl can be executed')

@@ -62,7 +62,7 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     @connection ||= chef_api_connection
   end
 
-  def nodes_last_seen # rubocop:disable all
+  def nodes_last_seen
     nodes = connection.get_rest('/nodes')
     nodes.keys.map do |node_name|
       node = connection.get_rest("/nodes/#{node_name}")

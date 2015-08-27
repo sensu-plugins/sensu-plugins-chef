@@ -47,7 +47,7 @@ require 'ridley'
 # Chef Node
 #
 class ChefNode < Sensu::Handler
-  def chef_node_exists?  # rubocop:disable all
+  def chef_node_exists?
     retried = 0
     begin
       Ridley.open(
@@ -86,8 +86,7 @@ class ChefNode < Sensu::Handler
   def filter; end
 
   def handle
-    # #YELLOW
-    unless chef_node_exists?  # rubocop:disable GuardClause, IfUnlessModifier
+    unless chef_node_exists?  # rubocop:disable GuardClause
       delete_sensu_client!
     end
   end
