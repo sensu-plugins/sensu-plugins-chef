@@ -25,7 +25,7 @@
 #   Returns CRITICAL if any of the chef-server processes are in a 'fail' or 'down' state
 #
 # LICENSE:
-#   Tim Smith  tim@cozy.co
+#   Tim Smith  tsmith@chef.io
 #   Released under the same terms as Sensu (the MIT license); see LICENSE
 #   for details.
 #
