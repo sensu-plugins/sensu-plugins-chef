@@ -9,6 +9,9 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - add a check if a node exists
 
+### Changed
+- pin to varia_model 0.4.1 for Ruby 1.9.3 compatability
+
 ## [0.0.4] - 2015-09-03
 ### Changed
 - bumped chef gem to version chef-11.18.12
