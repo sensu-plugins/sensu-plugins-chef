@@ -11,6 +11,7 @@
 
 ## Files
  * bin/check-chef-nodes.rb
+ * bin/check-chef-node.rb
  * bin/check-chef-server.rb
  * bin/handler-chef-node.rb
 
