@@ -41,7 +41,7 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          description: 'Amount of seconds after which node considered as stuck',
          short: '-t CRITICAL-TIMESPAN',
          long: '--timespan CRITICAL-TIMESPAN',
-         default: (600 + 300.0 + 60 * 3)
+         default: (1800 + 300.0 + 180)
 
   option :chef_server_url,
          description: 'URL of Chef server',
