@@ -4,7 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
-- changed default time before a check is deemed critical to 35 minutes to match the chef-client cookbook (30 min + 5 in splay + 3 for converge)
+
+## [0.0.6] - 2015-12-03
+### Changed
+- changed default time before a check is deemed critical to 38 minutes to match the chef-client cookbook (30 min + 5 in splay + 3 for converge)
 
 ## [0.0.5] - 2015-11-24
 ### Added
