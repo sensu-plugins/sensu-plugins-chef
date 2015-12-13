@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 
 ## Unreleased
 
+## [0.0.7] - 2016-05-08
+### Changed
+- Added decomm.rb handler with flapjack support and possibility to disable chef check and to trigger a handler only if keepalive occurrences value reach a certain threshold (handled through Sensu filter feature)
+
 ## [0.0.6] - 2015-12-03
 ### Changed
 - changed default time before a check is deemed critical to 38 minutes to match the chef-client cookbook (30 min + 5 in splay + 3 for converge)
