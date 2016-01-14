@@ -21,6 +21,7 @@
 # USAGE:
 #   Look for nodes that haven't check in for 1 or more hours
 #   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/to/org.pem
+#   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/to/org.pem -e "^sensu.*$"
 #
 # NOTES:
 #
@@ -58,12 +59,19 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          short: '-K CLIENT-KEY',
          long: '--keys CLIENT-KEY'
 
+  option :exclude_nodes,
+         description: 'Node to excludes',
+         short: '-e EXCLUDE-NODES',
+         long: '--exclude-nodes EXCLUDE-NODES',
+         default: '^$'
+
   def connection
     @connection ||= chef_api_connection
   end
 
   def nodes_last_seen
     nodes = connection.get_rest('/nodes')
+    nodes.delete_if { |node_name| node_name.match(/#{exclude_nodes}/) }
     nodes.keys.map do |node_name|
       node = connection.get_rest("/nodes/#{node_name}")
       if node['ohai_time']
