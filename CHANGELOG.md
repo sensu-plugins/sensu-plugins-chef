@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## Unreleased
+- add an option to "check-chef-nodes" to exclude nodes from check
 
 ## [0.0.6] - 2015-12-03
 ### Changed
