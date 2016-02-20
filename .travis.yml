@@ -1,18 +1,33 @@
 language: ruby
 cache:
-  - bundler
+- bundler
 install:
-  - bundle install
+- bundle install
 rvm:
-  - 1.9.3
-  - 2.0
-  - 2.1
-  - 2.2
+- 1.9.3
+- 2.0
+- 2.1
+- 2.2
 notifications:
   email:
     recipients:
-      - sensu-plugin@sensu-plugins.io
+    - sensu-plugin@sensu-plugins.io
     on_success: change
     on_failure: always
 script:
-  - 'bundle exec rake default'
+- bundle exec rake default
+- gem build sensu-plugins-chef.gemspec
+- gem install sensu-plugins-chef-*.gem
+deploy:
+  provider: rubygems
+  api_key:
+    secure: g/pQkLYUIQACeun9Cs+TaWvhO6VepD7nyQLpYhuBYXHNGIXJsgjgulr/SzYcrP+R4NZAzqse8bQTjHv+mGTa91nAxOHwMo7R8gmF/WsiuiPL1GpFR3EOYCgx8+IPQ8T0EnTRE5Nkf+25O5tPtbgPcUA/6jJHEEIxXtYfJd8l10s=
+  gem: sensu-plugins-chef
+  on:
+    tags: true
+    all_branches: true
+    rvm: 1.9.3
+    rvm: 2.0
+    rvm: 2.1
+    rvm: 2.2
+    repo: sensu-plugins/sensu-plugins-chef
