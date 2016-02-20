@@ -71,7 +71,7 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
 
   def nodes_last_seen
     nodes = connection.get_rest('/nodes')
-    nodes.delete_if { |node_name| node_name.match(/#{exclude_nodes}/) }
+    nodes.delete_if { |node_name| node_name =~ /#{exclude_nodes}/ }
     nodes.keys.map do |node_name|
       node = connection.get_rest("/nodes/#{node_name}")
       if node['ohai_time']
