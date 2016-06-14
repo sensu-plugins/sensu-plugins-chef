@@ -2,8 +2,7 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 
 require 'date'
-require 'sensu-plugins-chef'
-
+require_relative 'lib/sensu-plugins-chef'
 
 # pvt_key = '~/.ssh/gem-private_key.pem'
 
