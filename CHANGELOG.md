@@ -4,7 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-- add an option to "check-chef-nodes" to exclude nodes from check
+- check-chef-server.rb: loosen regex used to match chef-server-ctl status output
+- check-chef-nodes.rb: add an option to "check-chef-nodes" to exclude nodes from check
+- Rubocop updated to ~> 0.40; automated cleanup applied.
+- Remove Ruby 1.9.3 support; add Ruby 2.3.0 support
 
 ## [0.0.6] - 2015-12-03
 ### Changed
