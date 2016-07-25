@@ -34,7 +34,7 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsChef::Version::VER_STRING
 
-  s.add_runtime_dependency 'chef',         '11.18.12'
+  s.add_runtime_dependency 'chef',         '12.12.15'
   s.add_runtime_dependency 'ridley',       '4.1.2'
   s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
   s.add_runtime_dependency 'varia_model',  '0.4.1'
