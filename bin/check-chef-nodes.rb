@@ -100,11 +100,12 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
   end
 
   def any_node_stuck?
-    nodes_last_seen.map(&:values).flatten.all? { |x| x == false }
+    @nodes_last_seen ||= nodes_last_seen
+    @nodes_last_seen.map(&:values).flatten.all? { |x| x == false }
   end
 
   def failed_nodes_names
-    all_failed_tuples = nodes_last_seen.select { |node_set| node_set.values.first == true }
+    all_failed_tuples = @nodes_last_seen.select { |node_set| node_set.values.first == true }
     all_failed_tuples.map(&:keys).flatten.join(', ')
   end
 end
