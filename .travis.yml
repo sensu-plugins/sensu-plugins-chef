@@ -2,6 +2,7 @@ language: ruby
 cache:
 - bundler
 install:
+- gem install bundler -v 1.12
 - bundle install
 rvm:
 - 2.0

@@ -6,6 +6,7 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ## [Unreleased]
 - in `check-chef-nodes.rb` made client name required
 - in `check-chef-nodes.rb` made a sane default for client name
+- fix travis builds for ruby versions that have older bundler installed
 
 ## [2.0.0] - 2016-07-25
 ### Changed
