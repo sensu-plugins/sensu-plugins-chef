@@ -49,10 +49,13 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          short: '-U CHEF-SERVER-URL',
          long: '--url CHEF-SERVER-URL'
 
+  # defaults to the equivalent of `hostname --fqdn`
   option :client_name,
          description: 'Client name',
          short: '-C CLIENT-NAME',
-         long: '--client CLIENT-NAME'
+         long: '--client CLIENT-NAME',
+         required: true,
+         default: Socket.gethostbyname(Socket.gethostname).first
 
   option :key,
          description: 'Client\'s key',
