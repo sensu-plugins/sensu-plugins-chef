@@ -4,6 +4,8 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+
+## [2.0.0] - 2017-02-12
 ### Added
 - `check-chef-nodes.rb`: make client name required and set a sane default (@majormoses)
 
