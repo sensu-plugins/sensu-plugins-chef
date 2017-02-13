@@ -6,7 +6,6 @@ require_relative 'lib/sensu-plugins-chef'
 
 Gem::Specification.new do |s|
   s.authors                = ['Sensu Plugins and contributors']
-  # s.cert_chain             = ['certs/sensu-plugins.pem']
   s.date                   = Date.today.to_s
   s.description            = 'This plugin provides native Chef instrumentation
                               for monitoring, including: report stale nodes,
@@ -17,7 +16,7 @@ Gem::Specification.new do |s|
   s.files                  = Dir.glob('{bin,lib}/**/*') + %w(LICENSE README.md CHANGELOG.md)
   s.homepage               = 'https://github.com/sensu-plugins/sensu-plugins-chef'
   s.license                = 'MIT'
-  s.metadata               = { 'maintainer'         => '@mattyjones',
+  s.metadata               = { 'maintainer'         => 'sensu-plugin',
                                'development_status' => 'active',
                                'production_status'  => 'unstable - testing recommended',
                                'release_draft'      => 'false',
@@ -26,7 +25,7 @@ Gem::Specification.new do |s|
   s.platform               = Gem::Platform::RUBY
   s.post_install_message   = 'You can use the embedded Ruby by setting EMBEDDED_RUBY=true in /etc/default/sensu'
   s.require_paths          = ['lib']
-  s.required_ruby_version  = '>= 2.0.0'
+  s.required_ruby_version  = '>= 2.1.0'
   s.summary                = 'Sensu plugins for chef'
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsChef::Version::VER_STRING
