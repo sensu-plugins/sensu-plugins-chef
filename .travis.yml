@@ -2,9 +2,9 @@ language: ruby
 cache:
 - bundler
 install:
+- gem install bundler -v 1.12
 - bundle install
 rvm:
-- 2.0
 - 2.1
 - 2.2
 - 2.3.0
@@ -26,7 +26,6 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.0
     rvm: 2.1
     rvm: 2.2
     rvm: 2.3.0

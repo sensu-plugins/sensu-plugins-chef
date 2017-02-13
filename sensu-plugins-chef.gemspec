@@ -31,14 +31,27 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsChef::Version::VER_STRING
 
-  s.add_runtime_dependency 'chef',         '12.12.15'
+  s.add_runtime_dependency 'chef', '12.12.15'
+  if defined?(RUBY_VERSION) && RUBY_VERSION <= '2.1'
+    s.add_development_dependency 'buff-ignore', '1.1.1'
+    s.add_runtime_dependency 'chef-zero', '~> 4.5.0'
+    s.add_runtime_dependency 'ffi-yajl', '~> 2.2.3'
+    s.add_runtime_dependency 'net-http-persistent', '~> 2.9'
+    s.add_runtime_dependency 'ohai', '~> 8.17.0'
+    s.add_runtime_dependency 'rack', '~> 1.6.5'
+  end
+
   s.add_runtime_dependency 'ridley',       '4.1.2'
   s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
-  s.add_runtime_dependency 'varia_model',  '0.4.1'
+  s.add_runtime_dependency 'varia_model', '0.4.1'
 
-  s.add_development_dependency 'bundler',                   '~> 1.12'
+  s.add_development_dependency 'bundler', '~> 1.12'
+
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
   s.add_development_dependency 'github-markup',             '~> 1.3'
+  if defined?(RUBY_VERSION) && RUBY_VERSION <= '2.2.2'
+    s.add_development_dependency 'nio4r', '~> 1.2'
+  end
   s.add_development_dependency 'pry',                       '~> 0.10'
   s.add_development_dependency 'rake',                      '~> 10.5'
   s.add_development_dependency 'redcarpet',                 '~> 3.2'

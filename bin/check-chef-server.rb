@@ -38,7 +38,7 @@ require 'sensu-plugin/check/cli'
 class CheckChefServer < Sensu::Plugin::Check::CLI
   def run
     # chef-server-ctl must be run with elevated privs. fail if we're not uid 0
-    if Process.uid != 0
+    if Process.uid.nonzero?
       unknown('check-chef-server must be run with elevated privileges so that chef-server-ctl can be executed')
     else
       status = `/usr/bin/chef-server-ctl status`
