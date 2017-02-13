@@ -4,13 +4,19 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
-- in `check-chef-nodes.rb` made client name required
-- in `check-chef-nodes.rb` made a sane default for client name
-- fix travis builds for ruby versions that have older bundler installed
+### Added
+- `check-chef-nodes.rb`: make client name required and set a sane default (@majormoses)
 
-## [2.0.0] - 2016-07-25
+### Removed
+- support for Ruby < 2.1.0
+
+### Fixed
+- fix travis builds for ruby versions that have older bundler installed (@majormoses)
+- `check-chef-nodes.rb`: Fix exclude nodes config (@obazoud)
+- `check-chef-nodes.rb`: Fix performance issue with `nodes_last_seen` being called twice when there are failed nodes (@obazoud)
+
 ### Changed
-- bumped Chef gem to the latest available
+- bump Chef gem to 12.12.15 (@mattyjones)
 
 ## [1.0.0] - 2016-06-14
 ### Added
