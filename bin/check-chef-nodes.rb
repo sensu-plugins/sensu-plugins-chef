@@ -77,8 +77,8 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     nodes.delete_if { |node_name| node_name =~ /#{config[:exclude_nodes]}/ }
     nodes.keys.map do |node_name|
       node = connection.get_rest("/nodes/#{node_name}")
-      if node['ohai_time']
-        { node_name => (Time.now - Time.at(node['ohai_time'])) > config[:critical_timespan].to_i }
+      if node['automatic']['ohai_time']
+        { node_name => (Time.now - Time.at(node['automatic']['ohai_time'])) > config[:critical_timespan].to_i }
       else
         { node_name => true }
       end
@@ -89,17 +89,18 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     if any_node_stuck?
       ok 'Chef Server API is ok, all nodes reporting'
     else
-      critical "The following nodes cannot be provisioned: #{failed_nodes_names}"
+      critical "The following nodes have not reported within #{config[:critical_timespan]} seconds: #{failed_nodes_names}"
     end
   end
 
   private
 
   def chef_api_connection
-    chef_server_url      = config[:chef_server_url]
-    client_name          = config[:client_name]
-    signing_key_filename = config[:key]
-    Chef::REST.new(chef_server_url, client_name, signing_key_filename)
+    options[:client_name] = config[:client_name]
+    options[:signing_key_filename] = config[:key]
+    options[:inflate_json_class] = false
+    chef_server_url = config[:chef_server_url]
+    Chef::ServerAPI.new(chef_server_url, options)
   end
 
   def any_node_stuck?

@@ -56,7 +56,7 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
 
   def run
     node = connection.get_rest("/nodes/#{config[:node_name]}")
-    if node['ohai_time']
+    if node['automatic']['ohai_time']
       ok "Node #{config[:node_name]} found"
     else
       warning "Node #{config[:node_name]} does not contain 'ohai_time' attribute"
@@ -68,9 +68,10 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
   private
 
   def chef_api_connection
-    chef_server_url      = config[:chef_server_url]
-    client_name          = config[:client_name]
-    signing_key_filename = config[:key]
-    Chef::REST.new(chef_server_url, client_name, signing_key_filename)
+    options[:client_name] = config[:client_name]
+    options[:signing_key_filename] = config[:key]
+    options[:inflate_json_class] = false
+    chef_server_url = config[:chef_server_url]
+    Chef::ServerAPI.new(chef_server_url, options)
   end
 end
