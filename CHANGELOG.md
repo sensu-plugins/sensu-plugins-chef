@@ -4,6 +4,12 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Fixed
+- `check-chef-nodes.rb`: Switch to using Chef::ServerAPI
+- `check-chef-node.rb`: Switch to using Chef::ServerAPI
+
+### Changed
+- `check-chef-nodes.rb`: Change output to include configured critical timespan, slightly different wording.
 
 ## [2.0.0] - 2017-02-12
 ### Added
