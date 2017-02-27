@@ -99,7 +99,7 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     options[:client_name] = config[:client_name]
     options[:signing_key_filename] = config[:key]
     options[:inflate_json_class] = false
-    chef_server_url      = config[:chef_server_url]
+    chef_server_url = config[:chef_server_url]
     Chef::ServerAPI.new(chef_server_url, options)
   end
 
