@@ -27,7 +27,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'chef/server_api'
+require 'chef'
 
 class ChefNodeChecker < Sensu::Plugin::Check::CLI
   option :node_name,
