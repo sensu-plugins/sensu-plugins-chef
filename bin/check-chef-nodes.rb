@@ -32,7 +32,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'chef'
+require 'chef/rest'
 
 #
 # Chef Nodes Status Checker
