@@ -21,7 +21,7 @@
 # USAGE:
 #   Look for nodes that haven't check in for 1 or more hours
 #   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/to/org.pem
-#   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/tohttps://packages.chef.io/files/stable/chef/13.0.118/ubuntu/14.04/chef_13.0.118-1_amd64.deb/org.pem -e "^sensu.*$"
+#   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/to/org.pem -e "^sensu.*$"
 #
 # NOTES:
 #
