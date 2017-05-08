@@ -50,8 +50,8 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
          short: '-K CLIENT-KEY',
          long: '--keys CLIENT-KEY'
 
-  option :ignore_ssl_warnings,
-         description: 'Ignore SSL certificate warnings',
+  option :ignore_ssl_verification,
+         description: 'Ignore SSL certificate verification',
          short: '-i',
          long: '--ignore-ssl'
 
@@ -70,13 +70,13 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
     critical "Node #{config[:node_name]} not found - #{e.message}"
   end
 
-  private 
+  private
 
   def chef_api_connection
     chef_server_url      = config[:chef_server_url]
     client_name          = config[:client_name]
     signing_key_filename = config[:key]
-    ignore_ssl = config[:ignore_ssl_warnings]
+    ignore_ssl = config[:ignore_ssl_verification]
     verify_ssl = ignore_ssl.nil?
 
     Celluloid.boot

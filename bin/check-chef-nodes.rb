@@ -68,8 +68,8 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          long: '--exclude-nodes EXCLUDE-NODES',
          default: '^$'
 
-  option :ignore_ssl_warnings,
-         description: 'Ignore SSL certificate warnings',
+  option :ignore_ssl_verification,
+         description: 'Ignore SSL certificate verification',
          short: '-i',
          long: '--ignore-ssl'
 
@@ -104,7 +104,7 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     chef_server_url      = config[:chef_server_url]
     client_name          = config[:client_name]
     signing_key_filename = config[:key]
-    ignore_ssl = config[:ignore_ssl_warnings]
+    ignore_ssl = config[:ignore_ssl_verification]
     verify_ssl = ignore_ssl.nil?
 
     Celluloid.boot
