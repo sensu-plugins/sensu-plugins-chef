@@ -21,7 +21,7 @@
 # USAGE:
 #   Look for nodes that haven't check in for 1 or more hours
 #   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/to/org.pem
-#   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/to/org.pem -e "^sensu.*$"
+#   ./check-chef-nodes.rb -t 3600 -U https://api.opscode.com/organizations/<org> -K /path/tohttps://packages.chef.io/files/stable/chef/13.0.118/ubuntu/14.04/chef_13.0.118-1_amd64.deb/org.pem -e "^sensu.*$"
 #
 # NOTES:
 #
@@ -32,7 +32,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'chef/rest'
+require 'ridley'
 
 #
 # Chef Nodes Status Checker
@@ -68,19 +68,24 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          long: '--exclude-nodes EXCLUDE-NODES',
          default: '^$'
 
+  option :ignore_ssl_warnings,
+         description: 'Ignore SSL certificate warnings',
+         short: '-i',
+         long: '--ignore-ssl'
+
   def connection
     @connection ||= chef_api_connection
   end
 
   def nodes_last_seen
-    nodes = connection.get_rest('/nodes')
-    nodes.delete_if { |node_name| node_name =~ /#{config[:exclude_nodes]}/ }
-    nodes.keys.map do |node_name|
-      node = connection.get_rest("/nodes/#{node_name}")
-      if node['ohai_time']
-        { node_name => (Time.now - Time.at(node['ohai_time'])) > config[:critical_timespan].to_i }
+    nodes = connection.node.all
+    nodes.delete_if { |node| node.name =~ /#{config[:exclude_nodes]}/ }
+    nodes.map do |node|
+      node.reload
+      if node['automatic']['ohai_time']
+        { node.name => (Time.now - Time.at(node['automatic']['ohai_time'])) > config[:critical_timespan].to_i }
       else
-        { node_name => true }
+        { node.name => true }
       end
     end
   end
@@ -99,7 +104,11 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
     chef_server_url      = config[:chef_server_url]
     client_name          = config[:client_name]
     signing_key_filename = config[:key]
-    Chef::REST.new(chef_server_url, client_name, signing_key_filename)
+    ignore_ssl = config[:ignore_ssl_warnings]
+    verify_ssl = ignore_ssl.nil?
+
+    Celluloid.boot
+    Ridley.new(server_url: chef_server_url, client_name: client_name, client_key: signing_key_filename, ssl: { verify: verify_ssl })
   end
 
   def any_node_stuck?
