@@ -40,9 +40,9 @@ Gem::Specification.new do |s|
     s.add_runtime_dependency 'rack', '~> 1.6.5'
   end
 
-  s.add_runtime_dependency 'ridley',       '4.1.2'
+  s.add_runtime_dependency 'ridley',       '5.1.0'
   s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
-  s.add_runtime_dependency 'varia_model', '0.4.1'
+  s.add_runtime_dependency 'varia_model', '0.6'
 
   s.add_development_dependency 'bundler', '~> 1.12'
 

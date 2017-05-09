@@ -27,7 +27,7 @@
 #
 
 require 'sensu-plugin/check/cli'
-require 'chef/rest'
+require 'ridley'
 
 class ChefNodeChecker < Sensu::Plugin::Check::CLI
   option :node_name,
@@ -50,13 +50,18 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
          short: '-K CLIENT-KEY',
          long: '--keys CLIENT-KEY'
 
+  option :ignore_ssl_verification,
+         description: 'Ignore SSL certificate verification',
+         short: '-i',
+         long: '--ignore-ssl'
+
   def connection
     @connection ||= chef_api_connection
   end
 
   def run
-    node = connection.get_rest("/nodes/#{config[:node_name]}")
-    if node['ohai_time']
+    node = connection.node.find(config[:node_name])
+    if node['automatic']['ohai_time']
       ok "Node #{config[:node_name]} found"
     else
       warning "Node #{config[:node_name]} does not contain 'ohai_time' attribute"
@@ -71,6 +76,10 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
     chef_server_url      = config[:chef_server_url]
     client_name          = config[:client_name]
     signing_key_filename = config[:key]
-    Chef::REST.new(chef_server_url, client_name, signing_key_filename)
+    ignore_ssl = config[:ignore_ssl_verification]
+    verify_ssl = ignore_ssl.nil?
+
+    Celluloid.boot
+    Ridley.new(server_url: chef_server_url, client_name: client_name, client_key: signing_key_filename, ssl: { verify: verify_ssl })
   end
 end
