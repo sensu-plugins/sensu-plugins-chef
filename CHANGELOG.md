@@ -4,6 +4,7 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+- supress lots of hashie warnings by setting its logger to nil like this: https://github.com/berkshelf/berkshelf/pull/1668/files#diff-3eca4e8b32b88ae6a1f14498e3ef7b25R5 (@babrams)
 ## [3.0.0]
 ### Breaking Change
 - re-wrote all checks to use latest ridley. As ridley 5.x requires buff-extension 2.x which requires >= ruby 2.2 and sensu has never shipped with ruby 2.1 the decision was made to drop this support. If you are not using an embedded ruby and are using 2.1 this will break for you. To avoid this you can either switch to embedded ruby or upgrade your ruby to at least 2.2

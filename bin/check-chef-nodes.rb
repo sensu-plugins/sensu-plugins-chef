@@ -34,6 +34,11 @@
 require 'sensu-plugin/check/cli'
 require 'ridley'
 
+# supress the THOUSANDS of useless warnings
+require 'hashie'
+require 'hashie/logger'
+Hashie.logger = Logger.new(nil)
+
 #
 # Chef Nodes Status Checker
 #
