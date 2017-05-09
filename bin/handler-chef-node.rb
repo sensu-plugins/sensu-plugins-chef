@@ -43,6 +43,11 @@
 require 'sensu-handler'
 require 'ridley'
 
+# supress the THOUSANDS of useless warnings
+require 'hashie'
+require 'hashie/logger'
+Hashie.logger = Logger.new(nil)
+
 #
 # Chef Node
 #
