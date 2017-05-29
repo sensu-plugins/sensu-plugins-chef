@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+## [3.0.2] - 2017-05-28
+## Fixed
+- updating runtime deps
 ## [3.0.1] - 2017-05-09
 ## Changed
 - supress lots of hashie warnings by setting its logger to nil like this: https://github.com/berkshelf/berkshelf/pull/1668/files#diff-3eca4e8b32b88ae6a1f14498e3ef7b25R5 (@babrams)
@@ -75,7 +78,10 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/2.0.1...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.2...HEAD
+[3.0.2]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.2...3.0.1
+[3.0.1]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.1...3.0.0
+[3.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.0...2.0.1
 [2.0.1]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/2.0.0...2.0.1
 [2.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/1.0.0...2.0.0
 [1.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/0.0.6...1.0.0
