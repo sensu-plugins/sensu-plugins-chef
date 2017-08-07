@@ -4,6 +4,11 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Breaking Change
+- check-chef-nodes.rb: added an option for a grace_period which allows exclusion of nodes until they have been online for a specified ammount of time. Defaulting to 300 seconds. (@majormoses)
+- check-chef-nodes.rb: when chef has not initially run we can not determine the time that it has been up for nor when it last converged as ohai will not have this information yet. Rather than assuming this is a failure we treat nodes that have no ohai data as not being able to be evaluated. If you are looking for something to catch nodes that fail initial bootstrap I would suggest something along the lines of [aws-watcher](https://github.com/majormoses/aws-watcher)  (@majormoses)
+
+
 ## [3.0.2] - 2017-05-28
 ## Fixed
 - updating runtime deps
