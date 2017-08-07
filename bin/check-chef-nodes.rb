@@ -73,10 +73,18 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          long: '--exclude-nodes EXCLUDE-NODES',
          default: '^$'
 
+  option :grace_period,
+         description: 'The ammount of time before a node should be evaluated for failed convergence',
+         long: '--grace-period SECONDS',
+         default: (60 * 5), # default 5 minutes, which seems like a good but not great default
+         proc: proc(&:to_i)
+
   option :ignore_ssl_verification,
          description: 'Ignore SSL certificate verification',
          short: '-i',
-         long: '--ignore-ssl'
+         long: '--ignore-ssl',
+         default: false,
+         boolean: true
 
   def connection
     @connection ||= chef_api_connection
@@ -85,21 +93,37 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
   def nodes_last_seen
     nodes = connection.node.all
     nodes.delete_if { |node| node.name =~ /#{config[:exclude_nodes]}/ }
-    nodes.map do |node|
+
+    checked_nodes = []
+    nodes.each do |node|
       node.reload
-      if node['automatic']['ohai_time']
-        { node.name => (Time.now - Time.at(node['automatic']['ohai_time'])) > config[:critical_timespan].to_i }
-      else
-        { node.name => true }
+      # no uptime: node might have not finished convergence -> won't check
+      unless node['automatic']['uptime_seconds']
+        checked_nodes << { node['name'] => false }
+        next
       end
+
+      # won't check if node's uptime is still within grace period
+      unless node['automatic']['uptime_seconds'] > config[:grace_period]
+        checked_nodes << { node['name'] => false }
+        next
+      end
+
+      # compute elapsed time since last convergence
+      checked_nodes << if node['automatic']['ohai_time']
+                         { node['name'] => (Time.now - Time.at(node['automatic']['ohai_time'])) > config[:critical_timespan].to_i }
+                       else
+                         { node['name'] => true }
+                       end
     end
+    checked_nodes
   end
 
   def run
     if any_node_stuck?
-      ok 'Chef Server API is ok, all nodes reporting'
-    else
       critical "The following nodes cannot be provisioned: #{failed_nodes_names}"
+    else
+      ok 'Chef Server API is ok, all nodes reporting'
     end
   end
 
@@ -117,12 +141,27 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
   end
 
   def any_node_stuck?
+    stuck = []
     @nodes_last_seen ||= nodes_last_seen
-    @nodes_last_seen.map(&:values).flatten.all? { |x| x == false }
+    @nodes_last_seen.flatten.each do |node|
+      node.each do |name, status|
+        stuck << name if status == true
+      end
+    end
+    if stuck.empty?
+      false
+    else
+      true
+    end
   end
 
   def failed_nodes_names
-    all_failed_tuples = @nodes_last_seen.select { |node_set| node_set.values.first == true }
-    all_failed_tuples.map(&:keys).flatten.join(', ')
+    failed_nodes = []
+    @nodes_last_seen.flatten.each do |node|
+      node.each do |name, status|
+        failed_nodes << name if status == true
+      end
+    end
+    failed_nodes
   end
 end
