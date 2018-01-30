@@ -74,9 +74,10 @@ class ChefNodesStatusChecker < Sensu::Plugin::Check::CLI
          default: '^$'
 
   option :grace_period,
-         description: 'The ammount of time before a node should be evaluated for failed convergence',
+         description: 'The amount of time before a node should be evaluated for failed convergence',
          long: '--grace-period SECONDS',
-         default: (60 * 5), # default 5 minutes, which seems like a good but not great default
+         # default 5 minutes, which seems like a good but not great default
+         default: (60 * 5),
          proc: proc(&:to_i)
 
   option :ignore_ssl_verification,
