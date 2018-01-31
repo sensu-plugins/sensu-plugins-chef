@@ -75,7 +75,7 @@ class ChefNode < Sensu::Handler
         puts "CHEF-NODE: Ridley is broken: #{error.inspect}"
         true
       end
-    rescue => error
+    rescue StandardError => error
       puts "CHEF-NODE: Unexpected error: #{error.inspect}"
       true
     end
@@ -84,7 +84,7 @@ class ChefNode < Sensu::Handler
   def delete_sensu_client!
     api_request(:DELETE, '/clients/' + @event['client']['name'])
     puts "CHEF-NODE: Successfully deleted Sensu client #{@event['client']['name']}"
-  rescue => error
+  rescue StandardError => error
     puts "CHEF-NODE: Unexpected error: #{error.inspect}"
   end
 

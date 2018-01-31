@@ -4,6 +4,15 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
 
 ## [Unreleased]
+### Security
+- updated `rubocop` dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@geewiz)
+
+### Breaking Change
+- in order to bring in new rubocop dependency we need to drop ruby 2.0 support as it is EOL and aligns with our support policy. (@majormoses)
+
+### Fixed
+- made exception handling more specific by catching StandardError
+
 ## [4.0.0] - 2017-08-14
 ### Breaking Change
 - check-chef-nodes.rb: added an option for a grace_period which allows exclusion of nodes until they have been online for a specified ammount of time. Defaulting to 300 seconds. (@majormoses)

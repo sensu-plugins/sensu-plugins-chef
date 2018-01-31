@@ -71,7 +71,7 @@ class ChefNodeChecker < Sensu::Plugin::Check::CLI
     else
       warning "Node #{config[:node_name]} does not contain 'ohai_time' attribute"
     end
-  rescue => e
+  rescue StandardError => e
     critical "Node #{config[:node_name]} not found - #{e.message}"
   end
 

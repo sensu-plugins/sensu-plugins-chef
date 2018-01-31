@@ -1,3 +1,7 @@
+Style/BlockLength:
+  Exclude:
+    - '**/Rakefile'
+    - '*.gemspec'
 
 MethodLength:
   Max: 200
