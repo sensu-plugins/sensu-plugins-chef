@@ -1,17 +1,24 @@
-#Change Log
+# Change Log
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachangelog.com/)
+This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [5.0.0] - 2018-01-31
 ### Security
 - updated `rubocop` dependency to `~> 0.51.0` per: https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-8418. (@geewiz)
 
 ### Breaking Change
-- in order to bring in new rubocop dependency we need to drop ruby 2.0 support as it is EOL and aligns with our support policy. (@majormoses)
+- in order to bring in new rubocop dependency we need to drop ruby 2.0 support as it is EOL and aligns with our support policy. (@geewiz)
 
 ### Fixed
-- made exception handling more specific by catching StandardError
+- made exception handling more specific by catching StandardError (@geewiz)
+- misc formatting in changelog (@majormoses)
+
+### Changed
+- updated changelog guidelines location (@majormoses)
+
 
 ## [4.0.0] - 2017-08-14
 ### Breaking Change
@@ -93,7 +100,8 @@ This CHANGELOG follows the format listed at [Keep A Changelog](http://keepachang
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/4.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/5.0.0...HEAD
+[5.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/4.0.0...5.0.0
 [4.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.2...4.0.0
 [3.0.2]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.2...3.0.1
 [3.0.1]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/3.0.1...3.0.0
