@@ -30,7 +30,7 @@ Gem::Specification.new do |s|
   s.test_files             = s.files.grep(%r{^(test|spec|features)/})
   s.version                = SensuPluginsChef::Version::VER_STRING
 
-  s.add_runtime_dependency 'chef', '12.12.15'
+  s.add_runtime_dependency 'chef', '= 14.6.47'
   if defined?(RUBY_VERSION) && RUBY_VERSION <= '2.1'
     s.add_development_dependency 'buff-ignore', '1.1.1'
     s.add_runtime_dependency 'chef-zero', '~> 4.5.0'
