@@ -41,7 +41,7 @@ Gem::Specification.new do |s|
   end
 
   s.add_runtime_dependency 'hashie',       ['< 4.0.0', '>= 2.0.2']
-  s.add_runtime_dependency 'ridley',       '5.1.0'
+  s.add_runtime_dependency 'ridley',       '= 5.1.1'
   s.add_runtime_dependency 'sensu-plugin', '~> 1.2'
   s.add_runtime_dependency 'varia_model', '0.6'
 
