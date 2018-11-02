@@ -48,7 +48,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'bundler', '~> 1.12'
 
   s.add_development_dependency 'codeclimate-test-reporter', '~> 0.4'
-  s.add_development_dependency 'github-markup',             '~> 1.3'
+  s.add_development_dependency 'github-markup',             '~> 3.0'
   if defined?(RUBY_VERSION) && RUBY_VERSION <= '2.2.2'
     s.add_development_dependency 'nio4r', '~> 1.2'
   end
