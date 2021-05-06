@@ -4,10 +4,14 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+### Changed
+- Update development dependancy for github-markdown
+- Update development dependancy for rake
+- Update development dependancy for bundler
+- Update Readme with additional documentation
 
-### Added
-- Updated asset build targets to support centos6
-- Removed centos from bonsai asset definition
+### Fixed
+- Fixed errors in bonsai asset defitions
 
 ## [7.0.0] - 2019-4-19
 ### Breaking Changes
