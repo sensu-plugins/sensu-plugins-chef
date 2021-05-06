@@ -4,6 +4,9 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins/community/blob/master/HOW_WE_CHANGELOG.md)
 
 ## [Unreleased]
+
+## [7.1.0] - 2021-05-05
+
 ### Changed
 - Update development dependancy for github-markdown
 - Update development dependancy for rake
@@ -123,7 +126,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.0.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.1.0...HEAD
+[7.1.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.0.0...7.1.0
 [7.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/6.0.0...7.0.0
 [6.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/5.0.1...6.0.1
 [5.0.1]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/5.0.0...5.0.1
