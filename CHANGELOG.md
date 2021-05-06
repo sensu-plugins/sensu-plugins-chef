@@ -8,6 +8,7 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 - Update development dependancy for github-markdown
 - Update development dependancy for rake
 - Update development dependancy for bundler
+- Update development dependancy for rubocop
 - Update Readme with additional documentation
 
 ### Fixed
