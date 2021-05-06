@@ -1,5 +1,6 @@
 #! /usr/bin/env ruby
-#
+# frozen_string_literal: true
+
 #   check-chef-server
 #
 # DESCRIPTION:
@@ -48,7 +49,7 @@ class CheckChefServer < Sensu::Plugin::Check::CLI
           failed_processes << proc.match('^(fail|down|warning):\s+([a-z-]+)')[2]
         end
       end
-      if failed_processes.count > 0
+      if failed_processes.count.positive?
         critical("chef-server service(s): #{failed_processes.join(', ')} #{failed_processes.count == 1 ? 'is' : 'are'} failed, down, or in warning state")
       else
         ok

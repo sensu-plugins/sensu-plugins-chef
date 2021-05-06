@@ -1,4 +1,6 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: false
+
 #
 # This handler removes a Sensu client if its Chef node data
 # no longer exists.
@@ -66,17 +68,17 @@ class ChefNode < Sensu::Handler
         r.node.find(@event['client']['name']) ? true : false
       end
     # FIXME: Why is this necessary?  Ridley works fine outside of Sensu
-    rescue Celluloid::Error
+    rescue Celluloid::Error => e
       Celluloid.boot
       retried += 1
       if retried < 2
         retry
       else
-        puts "CHEF-NODE: Ridley is broken: #{error.inspect}"
+        puts "CHEF-NODE: Ridley is broken: #{e.inspect}"
         true
       end
-    rescue StandardError => error
-      puts "CHEF-NODE: Unexpected error: #{error.inspect}"
+    rescue StandardError => e
+      puts "CHEF-NODE: Unexpected error: #{e.inspect}"
       true
     end
   end
@@ -84,14 +86,14 @@ class ChefNode < Sensu::Handler
   def delete_sensu_client!
     api_request(:DELETE, '/clients/' + @event['client']['name'])
     puts "CHEF-NODE: Successfully deleted Sensu client #{@event['client']['name']}"
-  rescue StandardError => error
-    puts "CHEF-NODE: Unexpected error: #{error.inspect}"
+  rescue StandardError => e
+    puts "CHEF-NODE: Unexpected error: #{e.inspect}"
   end
 
   def filter; end
 
   def handle
-    unless chef_node_exists? # rubocop:disable GuardClause
+    unless chef_node_exists? # rubocop:disable Style/GuardClause
       delete_sensu_client!
     end
   end
