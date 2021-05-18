@@ -7,9 +7,7 @@ before_install:
 install:
 - bundle install
 rvm:
-- 2.3.0
-- 2.4.1
-- 2.5.1
+- 2.6
 notifications:
   email:
     recipients:
@@ -29,7 +27,7 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.4.1
+    rvm: 2.6
 - provider: rubygems
   api_key:
     secure: g/pQkLYUIQACeun9Cs+TaWvhO6VepD7nyQLpYhuBYXHNGIXJsgjgulr/SzYcrP+R4NZAzqse8bQTjHv+mGTa91nAxOHwMo7R8gmF/WsiuiPL1GpFR3EOYCgx8+IPQ8T0EnTRE5Nkf+25O5tPtbgPcUA/6jJHEEIxXtYfJd8l10s=
@@ -37,7 +35,6 @@ deploy:
   on:
     tags: true
     all_branches: true
-    rvm: 2.3.0
-    rvm: 2.4.1
+    rvm: 2.6
     repo: sensu-plugins/sensu-plugins-chef
     

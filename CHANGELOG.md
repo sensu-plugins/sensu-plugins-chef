@@ -5,6 +5,9 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+### Breaking Changes
+- Require ruby 2.6 as minimum ruby version. upstream chef no longer supports EOLd ruby 2.4.   
+
 ## [7.1.0] - 2021-05-05
 
 ### Changed
