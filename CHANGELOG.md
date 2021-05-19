@@ -130,7 +130,8 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 ### Added
 - initial release
 
-[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.1.0...HEAD
+[Unreleased]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.1.1...HEAD
+[7.1.1]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.1.0...7.1.1
 [7.1.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/7.0.0...7.1.0
 [7.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/6.0.0...7.0.0
 [6.0.0]: https://github.com/sensu-plugins/sensu-plugins-chef/compare/5.0.1...6.0.1
