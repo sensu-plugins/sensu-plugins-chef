@@ -5,6 +5,10 @@ This CHANGELOG follows the format listed [here](https://github.com/sensu-plugins
 
 ## [Unreleased]
 
+## [7.1.1] - 2021-05-18
+### Fixed
+- Fixed frozen string literal directive setting in executable binaries
+
 ## [7.1.0] - 2021-05-05
 
 ### Changed
